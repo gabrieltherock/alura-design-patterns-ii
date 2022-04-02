@@ -4,7 +4,23 @@ import br.com.gabriel.orcamento.Orcamento;
 
 import java.math.BigDecimal;
 
-public interface Imposto {
+public abstract class Imposto {
 
-    BigDecimal calcular(Orcamento orcamento);
+    private final Imposto outro;
+
+    protected Imposto(Imposto outro) {
+        this.outro = outro;
+    }
+
+    public BigDecimal calcular(Orcamento orcamento) {
+        BigDecimal valorImposto = realizarCalculo(orcamento);
+        BigDecimal valorOutroImposto = BigDecimal.ZERO;
+
+        if (outro != null)
+            valorOutroImposto = realizarCalculo(orcamento);
+
+        return valorImposto.add(valorOutroImposto);
+    }
+
+    protected abstract BigDecimal realizarCalculo(Orcamento orcamento);
 }
