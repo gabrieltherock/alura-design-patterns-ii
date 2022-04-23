@@ -3,6 +3,7 @@ package br.com.gabriel;
 import br.com.gabriel.pedido.GeraPedido;
 import br.com.gabriel.pedido.GeraPedidoHandler;
 import br.com.gabriel.pedido.acao.EnviarEmailPedido;
+import br.com.gabriel.pedido.acao.LogDePedido;
 import br.com.gabriel.pedido.acao.SalvarPedidoNoBancoDeDados;
 
 import java.math.BigDecimal;
@@ -17,7 +18,10 @@ public class TestesPedidos {
 
         GeraPedido geraPedido = new GeraPedido(cliente, valorOrcamento, quantidadeItens);
 
-        GeraPedidoHandler handler = new GeraPedidoHandler(Arrays.asList(new EnviarEmailPedido(), new SalvarPedidoNoBancoDeDados()));
+        GeraPedidoHandler handler = new GeraPedidoHandler(Arrays.asList(
+                new EnviarEmailPedido(),
+                new SalvarPedidoNoBancoDeDados(),
+                new LogDePedido()));
         handler.execute(geraPedido);
     }
 }
