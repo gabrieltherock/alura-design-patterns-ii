@@ -1,24 +1,22 @@
 package br.com.gabriel.orcamento;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Orcamento {
+public class Orcamento implements Orcavel {
 
     private BigDecimal valor;
-    private final int quantidadeItens;
-
+    private final List<Orcavel> itens;
     private AbstractSituacaoOrcamento situacao;
 
-    public Orcamento(BigDecimal valor, int quantidadeItens) {
-        this.valor = valor;
-        this.quantidadeItens = quantidadeItens;
+    public Orcamento() {
+        this.valor = BigDecimal.ZERO;
+        this.itens = new ArrayList<>();
         this.situacao = new EmAnalise();
     }
 
-    public int getQuantidadeItens() {
-        return quantidadeItens;
-    }
-
+    @Override
     public BigDecimal getValor() {
         return valor;
     }
@@ -28,6 +26,15 @@ public class Orcamento {
         this.valor = this.valor.subtract(valorDescontoExtra);
     }
 
+    public int getQuantidadeItens() {
+        return itens.size();
+    }
+
+    public void adicionarItem(Orcavel itemOrcamento) {
+        this.valor = valor.add(itemOrcamento.getValor());
+        this.itens.add(itemOrcamento);
+    }
+    
     public void aprovar() {
         this.situacao.aprovar(this);
     }

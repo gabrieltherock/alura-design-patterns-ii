@@ -1,6 +1,7 @@
 package br.com.gabriel;
 
 import br.com.gabriel.desconto.CalculadoraDeDescontos;
+import br.com.gabriel.orcamento.ItemOrcamento;
 import br.com.gabriel.orcamento.Orcamento;
 
 import java.math.BigDecimal;
@@ -8,8 +9,11 @@ import java.math.BigDecimal;
 public class TestesDescontos {
 
     public static void main(String[] args) {
-        Orcamento primeiro = new Orcamento(new BigDecimal("200"), 6);
-        Orcamento segundo = new Orcamento(new BigDecimal("1000"), 1);
+        Orcamento primeiro = new Orcamento();
+        primeiro.adicionarItem(new ItemOrcamento(new BigDecimal("200")));
+
+        Orcamento segundo = new Orcamento();
+        segundo.adicionarItem(new ItemOrcamento(new BigDecimal("1000")));
 
         CalculadoraDeDescontos calculadora = new CalculadoraDeDescontos();
 
