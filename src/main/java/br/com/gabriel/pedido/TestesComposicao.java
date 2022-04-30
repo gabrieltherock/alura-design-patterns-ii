@@ -2,6 +2,7 @@ package br.com.gabriel.pedido;
 
 import br.com.gabriel.orcamento.ItemOrcamento;
 import br.com.gabriel.orcamento.Orcamento;
+import br.com.gabriel.orcamento.OrcamentoProxy;
 
 import java.math.BigDecimal;
 
@@ -16,6 +17,9 @@ public class TestesComposicao {
         novo.adicionarItem(new ItemOrcamento(new BigDecimal("500")));
         novo.adicionarItem(antigo);
 
-        System.out.println(novo.getValor());
+        OrcamentoProxy proxy = new OrcamentoProxy(novo);
+
+        System.out.println(proxy.getValor());
+        System.out.println(proxy.getValor());
     }
 }
